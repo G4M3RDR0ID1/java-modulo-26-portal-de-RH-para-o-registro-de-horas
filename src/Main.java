@@ -12,60 +12,67 @@ public class Main {
 
         System.out.println("Bem vindo ao Portal de RH\n");
 
-        System.out.println("Opçoes do menu:\n" +
-                "1: Registrar funcionario.\n" +
-                "2: Registrar horarios.\n" +
-                "3: Exibir registro de horas do funcionario.\n" +
-                "4: Deletar funcionario do sistema\n" +
-                "5: Sair."
-        );
-        int opcaoMenu = sc.nextInt();
+        int opcaoMenu = 0;
 
-        switch (opcaoMenu) {
-            case 1:
-                sc.nextLine();
-                System.out.println("Digite o nome do Funcionario:");
-                String nome = sc.nextLine();
-                System.out.println("Selecione qual o cargo dele!\nOpçoes do menu:\n" +
-                        "1: Analista.\n" +
-                        "2: Assistente.\n" +
-                        "3: Cordenador.\n" +
-                        "4: Estagiario\n" +
-                        "5: Gerente."
-                );
-                int opcaoCargo = sc.nextInt();
+        while (opcaoMenu != 5) {
 
-                while (opcaoCargo > 5 || opcaoCargo < 1){
-                    System.out.println("Numero digitado não corresponde as opçoes do menu, digite novamente!");
-                    opcaoCargo = sc.nextInt();
-                }
+            System.out.println("Opçoes do menu:\n" +
+                    "1: Registrar funcionario.\n" +
+                    "2: Registrar horarios.\n" +
+                    "3: Exibir registro de horas do funcionario.\n" +
+                    "4: Deletar funcionario do sistema\n" +
+                    "5: Sair."
+            );
+            opcaoMenu = sc.nextInt();
 
-                registarFuncionario(funcionarios, nome, opcaoCargo);
-                break;
+            switch (opcaoMenu) {
+                case 1:
+                    sc.nextLine();
+                    System.out.println("Digite o nome do Funcionario:");
+                    String nome = sc.nextLine();
+                    System.out.println("Selecione qual o cargo dele!\nOpçoes do menu:\n" +
+                            "1: Analista.\n" +
+                            "2: Assistente.\n" +
+                            "3: Cordenador.\n" +
+                            "4: Estagiario\n" +
+                            "5: Gerente."
+                    );
+                    int opcaoCargo = sc.nextInt();
 
-            case 2:
+                    while (opcaoCargo > 5 || opcaoCargo < 1) {
+                        System.out.println("Numero digitado não corresponde as opçoes do menu, digite novamente!");
+                        opcaoCargo = sc.nextInt();
+                    }
 
-                break;
+                    registarFuncionario(funcionarios, nome, opcaoCargo);
+                    break;
 
-            case 3:
-                System.out.println("Digite o numero do ID do funcionario que deseja exibir os horarios de ponto");
-                int id = sc.nextInt();
+                case 2:
 
-                exibirRegistroHoras(id, funcionarios);
-                break;
+                    break;
 
-            case 4:
-                System.out.println("Digite o numero do ID do funcionario que deseja deletar do banco de dados: ");
-                int idParaDeletar = sc.nextInt();
+                case 3:
+                    System.out.println("Digite o numero do ID do funcionario que deseja exibir os horarios de ponto");
+                    int id = sc.nextInt();
 
-                deletarFuncionario(idParaDeletar, funcionarios);
-                break;
+                    exibirRegistroHoras(id, funcionarios);
+                    break;
 
-            case 5:
+                case 4:
+                    System.out.println("Digite o numero do ID do funcionario que deseja deletar do banco de dados: ");
+                    int idParaDeletar = sc.nextInt();
 
-                break;
+                    deletarFuncionario(idParaDeletar, funcionarios);
+                    break;
+
+                case 5:
+                    System.out.println("Encerrando o Sistema!");
+                    break;
+
+                default:
+                    System.out.println("Opção invalida.");
+            }
         }
-
     }
 
     public static void registarFuncionario(Map<Integer, Funcionario> funcionarios, String nome, int opcaoCargo) {
