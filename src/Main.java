@@ -1,0 +1,126 @@
+import entitys.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Map<Integer, Funcionario> funcionarios = new HashMap<>();
+
+        System.out.println("Bem vindo ao Portal de RH\n");
+
+        System.out.println("Opçoes do menu:\n" +
+                "1: Registrar funcionario.\n" +
+                "2: Registrar horarios.\n" +
+                "3: Exibir registro de horas do funcionario.\n" +
+                "4: Deletar funcionario do sistema\n" +
+                "5: Sair."
+        );
+        int opcaoMenu = sc.nextInt();
+
+        switch (opcaoMenu) {
+            case 1:
+                sc.nextLine();
+                System.out.println("Digite o nome do Funcionario:");
+                String nome = sc.nextLine();
+                System.out.println("Selecione qual o cargo dele!\nOpçoes do menu:\n" +
+                        "1: Analista.\n" +
+                        "2: Assistente.\n" +
+                        "3: Cordenador.\n" +
+                        "4: Estagiario\n" +
+                        "5: Gerente."
+                );
+                int opcaoCargo = sc.nextInt();
+
+                while (opcaoCargo > 5 || opcaoCargo < 1){
+                    System.out.println("Numero digitado não corresponde as opçoes do menu, digite novamente!");
+                    opcaoCargo = sc.nextInt();
+                }
+
+                registarFuncionario(funcionarios, nome, opcaoCargo);
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+                System.out.println("Digite o numero do ID do funcionario que deseja exibir os horarios de ponto");
+                int id = sc.nextInt();
+
+                exibirRegistroHoras(id, funcionarios);
+                break;
+
+            case 4:
+                System.out.println("Digite o numero do ID do funcionario que deseja deletar do banco de dados: ");
+                int idParaDeletar = sc.nextInt();
+
+                deletarFuncionario(idParaDeletar, funcionarios);
+                break;
+
+            case 5:
+
+                break;
+        }
+
+    }
+
+    public static void registarFuncionario(Map<Integer, Funcionario> funcionarios, String nome, int opcaoCargo) {
+
+        int id = GeradorId.gerarId();
+        Funcionario funcionario = null;
+
+        switch (opcaoCargo) {
+            case 1:
+                funcionario = new Analista(id, nome);
+                break;
+            case 2:
+                funcionario = new Assistente(id, nome);
+                break;
+            case 3:
+                funcionario = new Coordenador(id, nome);
+                break;
+            case 4:
+                funcionario = new Estagiario(id, nome);
+                break;
+            case 5:
+                funcionario = new Gerente(id, nome);
+                break;
+        }
+
+        funcionarios.put(id, funcionario);
+
+    }
+
+    public static void registarHorario() {
+
+    }
+
+    public static void exibirRegistroHoras(int id, Map<Integer, Funcionario> funcionarios) {
+
+        Funcionario funcionario = funcionarios.get(id);
+
+        if (funcionarios == null){
+            System.out.println("Funcionario não encontrado.");
+            return;
+        }
+
+        funcionario.exibirRegistros();
+
+    }
+
+    public static void deletarFuncionario(int idParaDeletar, Map<Integer, Funcionario> funcionarios) {
+
+        Funcionario funcionario = funcionarios.get(idParaDeletar);
+
+        if (funcionarios == null){
+            System.out.println("Funcionario não encontrado.");
+            return;
+        }
+
+        funcionarios.remove(idParaDeletar);
+    }
+}
