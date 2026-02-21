@@ -1,4 +1,4 @@
-package entitys;
+package domain;
 
 public class Assistente extends FuncionarioComPonto{
     public Assistente(int id, String nome) {

@@ -1,4 +1,4 @@
-package entitys;
+package infrastructure;
 
 public class GeradorId {
     private static int proximoId = 1;

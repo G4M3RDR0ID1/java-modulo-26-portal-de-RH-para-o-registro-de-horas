@@ -1,4 +1,4 @@
-package entitys;
+package domain;
 
 public class Coordenador extends FuncionarioComPonto{
     public Coordenador(int id, String nome) {
