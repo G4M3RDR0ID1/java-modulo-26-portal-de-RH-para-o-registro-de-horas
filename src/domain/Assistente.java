@@ -1,6 +1,6 @@
 package domain;
 
-public class Assistente extends FuncionarioComPonto{
+public class Assistente extends FuncionarioComPonto implements Registravel{
     public Assistente(int id, String nome) {
         super(id, nome);
     }

@@ -26,6 +26,4 @@ public abstract class Funcionario {
     public String toString() {
         return "ID: " + id + " Funcionario: " + nome + " Cargo: ";
     }
-
-    public abstract void registrarPonto(LocalDate data, LocalTime entrada, LocalTime saida);
 }

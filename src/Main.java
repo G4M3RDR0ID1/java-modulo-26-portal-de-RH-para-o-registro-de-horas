@@ -139,7 +139,11 @@ public class Main {
             LocalTime entrada = LocalTime.parse(entradaStr, formatterHora);
             LocalTime saida = LocalTime.parse(saidaStr, formatterHora);
 
-            funcionario.registrarPonto(data, entrada, saida);
+            if (funcionario instanceof Registravel registravel) {
+                registravel.registrarPonto(data, entrada, saida);
+            } else {
+                System.out.println("Este cargo não registra ponto.");
+            }
 
         } catch (Exception e){
             System.out.println("Formato de data ou hora invalido.");

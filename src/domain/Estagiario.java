@@ -13,8 +13,4 @@ public class Estagiario extends Funcionario{
         System.out.println("Este cargo não possui controle de ponto.");
     }
 
-    @Override
-    public void registrarPonto(LocalDate data, LocalTime entrada, LocalTime saida) {
-        System.out.println("Este cargo não possui controle de ponto.");
-    }
 }
