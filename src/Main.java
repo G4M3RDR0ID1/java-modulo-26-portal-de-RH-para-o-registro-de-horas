@@ -101,26 +101,33 @@ public class Main {
 
     public static void exibirRegistroHoras(int id, Map<Integer, Funcionario> funcionarios) {
 
-        Funcionario funcionario = funcionarios.get(id);
+        Funcionario funcionario = buscarFuncionario(funcionarios, id);
 
-        if (funcionarios == null){
-            System.out.println("Funcionario não encontrado.");
-            return;
-        }
+        if (funcionario == null) return;
 
         funcionario.exibirRegistros();
-
     }
 
     public static void deletarFuncionario(int idParaDeletar, Map<Integer, Funcionario> funcionarios) {
 
-        Funcionario funcionario = funcionarios.get(idParaDeletar);
+        Funcionario funcionario = buscarFuncionario(funcionarios, idParaDeletar);
 
-        if (funcionarios == null){
-            System.out.println("Funcionario não encontrado.");
-            return;
-        }
+        if (funcionario == null) return;
 
         funcionarios.remove(idParaDeletar);
+
+        System.out.println("Funcionário removido com sucesso.");
+    }
+
+    public static Funcionario buscarFuncionario(Map<Integer, Funcionario> funcionarios, int id){
+
+        Funcionario funcionario = funcionarios.get(id);
+
+        if (funcionario == null){
+            System.out.println("Funcionario não encontrado.");
+            return null;
+        }
+
+        return funcionario;
     }
 }
