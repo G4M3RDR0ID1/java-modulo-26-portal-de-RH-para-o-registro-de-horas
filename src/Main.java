@@ -14,14 +14,15 @@ public class Main {
 
         int opcaoMenu = 0;
 
-        while (opcaoMenu != 5) {
+        while (opcaoMenu != 6) {
 
             System.out.println("Opçoes do menu:\n" +
                     "1: Registrar funcionario.\n" +
                     "2: Registrar horarios.\n" +
                     "3: Exibir registro de horas do funcionario.\n" +
                     "4: Deletar funcionario do sistema\n" +
-                    "5: Sair."
+                    "5: Exibir IDs dos funcionarios cadastrados.\n" +
+                    "6: Sair."
             );
             opcaoMenu = sc.nextInt();
 
@@ -66,6 +67,10 @@ public class Main {
                     break;
 
                 case 5:
+                    exibirFuncionarios(funcionarios);
+                    break;
+
+                case 6:
                     System.out.println("Encerrando o Sistema!");
                     break;
 
@@ -99,6 +104,7 @@ public class Main {
         }
 
         funcionarios.put(id, funcionario);
+        System.out.println(funcionario);
 
     }
 
@@ -126,15 +132,29 @@ public class Main {
         System.out.println("Funcionário removido com sucesso.");
     }
 
-    public static Funcionario buscarFuncionario(Map<Integer, Funcionario> funcionarios, int id){
+    public static Funcionario buscarFuncionario(Map<Integer, Funcionario> funcionarios, int id) {
 
         Funcionario funcionario = funcionarios.get(id);
 
-        if (funcionario == null){
+        if (funcionario == null) {
             System.out.println("Funcionario não encontrado.");
             return null;
         }
 
         return funcionario;
+    }
+
+    public static void exibirFuncionarios(Map<Integer, Funcionario> funcionarios){
+
+        if (funcionarios.isEmpty()){
+            System.out.println("Nenhum funcionario cadastrado!");
+            return;
+        }
+
+        System.out.println("Funcionarios cadastrados:");
+
+        for (Funcionario f : funcionarios.values()){
+            System.out.println(f);
+        }
     }
 }

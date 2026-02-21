@@ -18,4 +18,9 @@ public abstract class Funcionario {
     }
 
     public abstract void exibirRegistros();
+
+    @Override
+    public String toString() {
+        return "ID: " + id + " Funcionario: " + nome;
+    }
 }
