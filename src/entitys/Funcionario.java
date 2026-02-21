@@ -1,5 +1,8 @@
 package entitys;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public abstract class Funcionario {
     private int id;
     private String nome;
@@ -21,6 +24,8 @@ public abstract class Funcionario {
 
     @Override
     public String toString() {
-        return "ID: " + id + " Funcionario: " + nome;
+        return "ID: " + id + " Funcionario: " + nome + " Cargo: ";
     }
+
+    public abstract void registrarPonto(LocalDate data, LocalTime entrada, LocalTime saida);
 }

@@ -1,5 +1,8 @@
 import entitys.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -49,12 +52,30 @@ public class Main {
                     break;
 
                 case 2:
+                    sc.nextLine();
 
+                    System.out.println("Digite o ID do funcionario:");
+                    int id = sc.nextInt();
+                    sc.nextLine();
+
+                    Funcionario funcionario = buscarFuncionario(funcionarios, id);
+                    if (funcionario == null) break;
+
+                    System.out.println("Digite o data do registro  (dd/MM/yyyy):");
+                    String dataStr = sc.nextLine();
+
+                    System.out.println("Digite o Hoario de Entrada (formato HH:mm):");
+                    String entradaStr = sc.nextLine();
+
+                    System.out.println("Digite o Hoario de Saida (formato HH:mm):");
+                    String saidaStr = sc.nextLine();
+
+                    registrarHorario(funcionario, dataStr, entradaStr, saidaStr);
                     break;
 
                 case 3:
                     System.out.println("Digite o numero do ID do funcionario que deseja exibir os horarios de ponto");
-                    int id = sc.nextInt();
+                    id = sc.nextInt();
 
                     exibirRegistroHoras(id, funcionarios);
                     break;
@@ -108,7 +129,20 @@ public class Main {
 
     }
 
-    public static void registarHorario() {
+    public static void registrarHorario(Funcionario funcionario, String dataStr, String entradaStr, String saidaStr) {
+        DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+
+        try {
+            LocalDate data = LocalDate.parse(dataStr, formatterData);
+            LocalTime entrada = LocalTime.parse(entradaStr, formatterHora);
+            LocalTime saida = LocalTime.parse(saidaStr, formatterHora);
+
+            funcionario.registrarPonto(data, entrada, saida);
+
+        } catch (Exception e){
+            System.out.println("Formato de data ou hora invalido.");
+        }
 
     }
 

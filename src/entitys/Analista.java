@@ -5,4 +5,8 @@ public class Analista extends FuncionarioComPonto{
         super(id, nome);
     }
 
+    @Override
+    protected boolean horasExtrasExcedidas(long horas) {
+        return horas > 3;
+    }
 }
